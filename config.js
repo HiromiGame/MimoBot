@@ -8,5 +8,10 @@ const {
 module.exports = {
     "clientId": clientId,
     "guildId": guildId,
-    "token": token
+    "token": token,
+    "genshin": {
+        "uidJson": 'data/Genshin/uidData.json',
+        "infoJson": 'data/Genshin/UserData/uidData.json'
+    },
+
 };
