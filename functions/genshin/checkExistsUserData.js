@@ -11,7 +11,7 @@ module.exports = function checkExistsUserData(path, id) {
             if (data.id === id) {
 
                 console.log(`Check! ${data.id} === ${id}`);
-                ck = true;
+                ck = data.uid;
 
             };
 

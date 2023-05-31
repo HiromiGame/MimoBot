@@ -11,80 +11,19 @@ const {
 } = require('discord.js');
 const fs = require('fs');
 
+const checkExistsUserData = require('../../functions/genshin/checkExistsUserData');
+const makeUserInfoEmbed = require('../../functions/genshin/makeUserInfoEmbed');
 const httpsRequest = require('../function/Genshin/httpsRequest');
 const getEnkaInfo = require('../function/Genshin/getEnkaInfo');
 
-const filePath = 'data/Genshin/UserData/uidData.json';
+const { genshin } = require('../../config.js');
+const filePath = genshin.uidJson;
 let timeout = [];
 let data;
 
 const waitEmbed = new EmbedBuilder()
     .setColor(0x0099ff)
-    .setTitle(`処理中...`)
-
-function checkExistsUserData(path, id) {
-
-    let ck = false;
-
-    if (fs.existsSync(path)) {
-
-        const json = JSON.parse(fs.readFileSync(path, 'utf8'));
-
-        json.UserData.forEach(data => {
-
-            if (data.id === id) {
-
-                console.log(`Found! ${data.id} === ${id}`);
-                ck = data.uid;
-
-            };
-
-        });
-
-    };
-
-    return ck;
-
-};
-
-function makeUserInfoEmbed(uid, data) {
-
-    const UserInfoEmbed = new EmbedBuilder()
-        .setColor(0x0099ff)
-        .setTitle(`${data.PlayerData.name}のステータス`)
-        .setURL(`https://enka.network/u/${uid}`)
-        // .setThumbnail(`https://enka.network/ui/UI_AvatarIcon_${data.PlayerData.icon}.png`)
-        // .setAuthor({ name: `UID: ${uid}` })
-        .addFields(
-            { name: 'ステータスメッセージ', value: `${data.PlayerData.statusMessage}` },
-            { name: '冒険ランク', value: `${data.PlayerData.level}`, inline: true },
-            { name: '世界ランク', value: `${data.PlayerData.worldLevel}`, inline: true },
-            { name: 'アチーブメント', value: `${data.PlayerData.achievement}`, inline: true },
-        )
-        .setFooter({ text: `UID: ${uid}` });
-    // .setTimestamp()
-
-    if (data.PlayerData.towerFloor) {
-        if (data.PlayerData.towerLevel) {
-            UserInfoEmbed.addFields(
-                { name: '深境螺旋', value: `${data.PlayerData.towerFloor} - ${data.PlayerData.towerLevel}`, inline: true },
-            )
-        }
-        else {
-            UserInfoEmbed.addFields(
-                { name: '深境螺旋', value: `8 - 3`, inline: true },
-            )
-        };
-    }
-    else {
-        UserInfoEmbed.addFields(
-            { name: '深境螺旋', value: '未解放', inline: true },
-        )
-    };
-
-    return UserInfoEmbed;
-
-};
+    .setDescription(`処理中...`)
 
 
 module.exports = {
