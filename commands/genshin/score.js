@@ -12,7 +12,7 @@ const fs = require('fs');
 
 const checkExistsUserData = require('../../functions/genshin/checkExistsUserData');
 
-const { genshin } = require('./config.js');
+const { genshin } = require('../../config.js');
 const filePath = genshin.uidJson;
 
 
@@ -44,7 +44,7 @@ module.exports = {
                 .setDescription(
                     'UIDが登録されていません\
                     \nUIDを登録しますか？\
-                    \n※登録すると、今後はUID入力する必要がなくなります'
+                    \n※登録すると、今後はUIDを入力する必要がなくなります'
                 );
 
             registerUIDButton
