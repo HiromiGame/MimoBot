@@ -10,6 +10,7 @@ const {
 } = require('discord.js');
 const fs = require('fs');
 
+// 変数の読み込み
 const { genshin } = require('../../config.js');
 
 
@@ -17,6 +18,8 @@ module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
 
+
+        // ボタン
         if (interaction.customId === 'registerUIDButton') {
 
             const uidInputModal = new ModalBuilder()
@@ -28,7 +31,7 @@ module.exports = {
                 .setLabel("UIDを入力")
                 .setMaxLength(9)
                 .setMinLength(9)
-                .setPlaceholder('*********')
+                .setPlaceholder('---------')
                 .setStyle(TextInputStyle.Short)
                 .setRequired(true);
 
@@ -39,11 +42,13 @@ module.exports = {
 
         };
 
+
+        // モーダル
         if (interaction.customId === 'registerUIDModal') {
 
             const userId = interaction.user.id;
             const uid = interaction.fields.getTextInputValue('uidInput');
-            let filePath = genshin.uidJson;
+            let filePath = genshin.uidJsonPath;
             let userData = [];
 
             if (fs.existsSync(filePath)) {
