@@ -10,8 +10,8 @@ module.exports = {
     "guildId": guildId,
     "token": token,
     "genshin": {
-        "uidJson": 'data/Genshin/uidData.json',
-        "infoJson": 'data/Genshin/UserData/uidData.json'
+        "uidJsonPath": 'data/Genshin/uidData.json',
+        "infoJsonPath": 'data/Genshin/UserData/uidData.json'
     },
 
 };

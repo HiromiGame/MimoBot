@@ -1,7 +1,7 @@
 const { createCanvas, loadImage, registerFont } = require('canvas');
 
 
-module.exports = async function makeScoreImage(data) {
+module.exports = async function makeScoreImage(data, num) {
 
     registerFont('assets/genshin/fonts/genshinFont.ttf', { family: 'GenshinFont' });
 
@@ -16,7 +16,7 @@ module.exports = async function makeScoreImage(data) {
     // ctx.drawImage(charaImg, 0, 0, 1920, 1080);
     // ctx.drawImage(overlayImg, 0, 0, 1920, 1080);
 
-    const character = data.CharacterData[0].Character;
+    const character = data.CharacterData[num].Character;
     const status = character.status;
     // let elementDamageTxt = `${character.element}元素ダメージ`;
 
